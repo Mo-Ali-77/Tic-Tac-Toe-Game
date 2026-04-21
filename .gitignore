@@ -1,0 +1,105 @@
+## [الأقسام الأصلية التي كانت لديك] ##
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio cache
+.vs/
+
+# Others
+*.log
+*.tlog
+*.pdb
+*.idb
+*.ipch
+*.iobj
+*.ipdb
+
+# Executables
+*.exe
+*.dll
+*.lib
+
+# Others you don’t usually need
+*.db
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+##########################################################
+## [إضافات الحماية والأمان الجديدة - تم إضافتها بواسطة الحماية] ##
+##########################################################
+
+# 1. ملفات الإعدادات (Config Files) - تمنع رفع كلمات السر والـ API Keys
+App.config
+Web.config
+appsettings.json
+appsettings.Development.json
+*.conf
+*.config
+
+# 2. ملفات البيئة والأسرار (Secrets & Environment)
+.env
+.env.*
+secrets.json
+*.secret
+*.secrets
+
+# 3. مفاتيح التشفير والشهادات (Certificates & Keys)
+# هذه الملفات لو تسربت يمكن فك تشفير بياناتك أو انتحال هويتك
+*.pfx
+*.p12
+*.snk
+*.pfx
+*.p12
+*.pem
+*.key
+*.pub
+*.asc
+*.gpg
+
+# 4. ملفات النشر والاتصال (Publish profiles)
+# تحتوي أحياناً على بيانات سيرفراتك الشخصية
+*.pubxml
+*.publishsettings
+
+# 5. قواعد البيانات المحلية (Local Databases)
+*.mdf
+*.ldf
+*.sdf
+*.db-shm
+*.db-wal
+
+# 6. مجلدات الحزم (Packages)
+# لا داعي لرفعها لأنها تزيد حجم المشروع ويمكن تحميلها من الإنترنت
+node_modules/
+packages/
