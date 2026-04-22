@@ -80,6 +80,30 @@ namespace TicTacToeGameProject
             pictureBox9.Enabled = false;
         }
 
+        bool IsDraw()
+        {
+            if(pictureBox1.Tag.ToString() == "")
+                return false;
+            if (pictureBox2.Tag.ToString() == "")
+                return false;
+            if (pictureBox3.Tag.ToString() == "")
+                return false;
+            if (pictureBox4.Tag.ToString() == "")
+                return false;
+            if (pictureBox5.Tag.ToString() == "")
+                return false;
+            if (pictureBox6.Tag.ToString() == "")
+                return false;
+            if (pictureBox7.Tag.ToString() == "")
+                return false;
+            if (pictureBox8.Tag.ToString() == "")
+                return false;
+            if (pictureBox9.Tag.ToString() == "")
+                return false;
+
+            return true;
+        }
+
         void WhichPlayerChoseWhichPicture(PictureBox Pb,Label TurnPlayer)
         {
             if (TurnPlayer.Text == "Player 1")
@@ -106,7 +130,17 @@ namespace TicTacToeGameProject
                     }
                 }
 
+                if (IsDraw())
+                {
+                    labWhoWinner.Text = "Draw";
+                    labTurnPlayer.Text = "Game Over";
 
+                    if (MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
+                    {
+                        DisablePlay();
+                        return;
+                    }
+                }
 
                 labTurnPlayer.Text = "Player 2";
             }
@@ -125,6 +159,18 @@ namespace TicTacToeGameProject
                 if (WhoIsWinner() == "Player 2")
                 {
                     labWhoWinner.Text = "Player 2";
+                    labTurnPlayer.Text = "Game Over";
+
+                    if (MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
+                    {
+                        DisablePlay();
+                        return;
+                    }
+                }
+
+                if (IsDraw())
+                {
+                    labWhoWinner.Text = "Draw";
                     labTurnPlayer.Text = "Game Over";
 
                     if (MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)

@@ -236,7 +236,7 @@
             this.labTurnPlayer.Font = new System.Drawing.Font("MV Boli", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTurnPlayer.ForeColor = System.Drawing.SystemColors.Menu;
             this.labTurnPlayer.Image = global::TicTacToeGameProject.Properties.Resources.TurnAndWinnerLabels;
-            this.labTurnPlayer.Location = new System.Drawing.Point(135, 224);
+            this.labTurnPlayer.Location = new System.Drawing.Point(150, 224);
             this.labTurnPlayer.Name = "labTurnPlayer";
             this.labTurnPlayer.Size = new System.Drawing.Size(97, 28);
             this.labTurnPlayer.TabIndex = 13;
@@ -248,7 +248,7 @@
             this.labWhoWinner.Font = new System.Drawing.Font("MV Boli", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labWhoWinner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.labWhoWinner.Image = global::TicTacToeGameProject.Properties.Resources.TurnAndWinnerLabels;
-            this.labWhoWinner.Location = new System.Drawing.Point(135, 333);
+            this.labWhoWinner.Location = new System.Drawing.Point(150, 331);
             this.labWhoWinner.Name = "labWhoWinner";
             this.labWhoWinner.Size = new System.Drawing.Size(132, 28);
             this.labWhoWinner.TabIndex = 14;
