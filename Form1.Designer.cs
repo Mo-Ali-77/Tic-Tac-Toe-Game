@@ -42,8 +42,8 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labTurnPlayer = new System.Windows.Forms.Label();
+            this.labWhoWinner = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -110,6 +110,7 @@
             this.btnResatrtGame.TabIndex = 3;
             this.btnResatrtGame.Text = "Restart Game";
             this.btnResatrtGame.UseVisualStyleBackColor = false;
+            this.btnResatrtGame.Click += new System.EventHandler(this.btnResatrtGame_Click);
             // 
             // pictureBox1
             // 
@@ -122,6 +123,8 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "";
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -133,6 +136,8 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Tag = "";
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox3
             // 
@@ -144,6 +149,8 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Tag = "";
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // pictureBox4
             // 
@@ -155,6 +162,8 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 7;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Tag = "";
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox5
             // 
@@ -166,6 +175,8 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 8;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Tag = "";
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // pictureBox6
             // 
@@ -177,6 +188,8 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 9;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Tag = "";
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // pictureBox7
             // 
@@ -188,6 +201,8 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 10;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Tag = "";
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // pictureBox8
             // 
@@ -199,6 +214,8 @@
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox8.TabIndex = 11;
             this.pictureBox8.TabStop = false;
+            this.pictureBox8.Tag = "";
+            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
             // 
             // pictureBox9
             // 
@@ -210,30 +227,32 @@
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox9.TabIndex = 12;
             this.pictureBox9.TabStop = false;
+            this.pictureBox9.Tag = "";
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
-            // label4
+            // labTurnPlayer
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("MV Boli", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.Menu;
-            this.label4.Image = global::TicTacToeGameProject.Properties.Resources.TurnAndWinnerLabels;
-            this.label4.Location = new System.Drawing.Point(135, 224);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(127, 28);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Game Over";
+            this.labTurnPlayer.AutoSize = true;
+            this.labTurnPlayer.Font = new System.Drawing.Font("MV Boli", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTurnPlayer.ForeColor = System.Drawing.SystemColors.Menu;
+            this.labTurnPlayer.Image = global::TicTacToeGameProject.Properties.Resources.TurnAndWinnerLabels;
+            this.labTurnPlayer.Location = new System.Drawing.Point(135, 224);
+            this.labTurnPlayer.Name = "labTurnPlayer";
+            this.labTurnPlayer.Size = new System.Drawing.Size(97, 28);
+            this.labTurnPlayer.TabIndex = 13;
+            this.labTurnPlayer.Text = "Player 1";
             // 
-            // label5
+            // labWhoWinner
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("MV Boli", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label5.Image = global::TicTacToeGameProject.Properties.Resources.TurnAndWinnerLabels;
-            this.label5.Location = new System.Drawing.Point(135, 333);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 28);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "In Progress";
+            this.labWhoWinner.AutoSize = true;
+            this.labWhoWinner.Font = new System.Drawing.Font("MV Boli", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labWhoWinner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.labWhoWinner.Image = global::TicTacToeGameProject.Properties.Resources.TurnAndWinnerLabels;
+            this.labWhoWinner.Location = new System.Drawing.Point(135, 333);
+            this.labWhoWinner.Name = "labWhoWinner";
+            this.labWhoWinner.Size = new System.Drawing.Size(132, 28);
+            this.labWhoWinner.TabIndex = 14;
+            this.labWhoWinner.Text = "In Progress";
             // 
             // frmTicTacToe
             // 
@@ -242,8 +261,8 @@
             this.BackgroundImage = global::TicTacToeGameProject.Properties.Resources.FormImg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1061, 564);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.labWhoWinner);
+            this.Controls.Add(this.labTurnPlayer);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox7);
@@ -290,8 +309,8 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labTurnPlayer;
+        private System.Windows.Forms.Label labWhoWinner;
     }
 }
 
