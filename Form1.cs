@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicTacToeGameProject.Properties;
 
@@ -260,47 +254,8 @@ namespace TicTacToeGameProject
             e.Graphics.DrawLine(Pen, leftX, hLine2_Y, rightX, hLine2_Y);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox8_Click(object sender, EventArgs e)
-        {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
-        }
-
-        private void pictureBox9_Click(object sender, EventArgs e)
+        // All X and O controllers trigger a single event.
+        private void pictureBoxs_Click(object sender, EventArgs e)
         {
             WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
         }
