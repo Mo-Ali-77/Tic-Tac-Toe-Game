@@ -12,53 +12,95 @@ namespace TicTacToeGameProject
             InitializeComponent();
         }
 
-        bool IsPictureBoxChosed(PictureBox Pb)
+        enum enPlayer
         {
-            return (Pb.Tag.ToString() == "O") || (Pb.Tag.ToString() == "X");
+            player1, player2
         }
 
-        string CheckedWinnerXorO(PictureBox Pb1, PictureBox Pb2, PictureBox Pb3)
+        enum enWinner
         {
-            if ((Pb1.Tag.ToString() == "X") && (Pb2.Tag.ToString() == "X") && (Pb3.Tag.ToString() == "X"))
-            {
-                return "X";
-            }
-
-            if ((Pb1.Tag.ToString() == "O") && (Pb2.Tag.ToString() == "O") && (Pb3.Tag.ToString() == "O"))
-            {
-                return "O";
-            }
-
-            return "";
+            player1, player2, Draw,GameInProgress
         }
 
-        string WhoIsWinner()
+        struct stGameStatus
         {
-            if ((CheckedWinnerXorO(pictureBox1, pictureBox2, pictureBox3) == "X")
-                || (CheckedWinnerXorO(pictureBox4, pictureBox5, pictureBox6) == "X")
-                || (CheckedWinnerXorO(pictureBox7, pictureBox8, pictureBox9) == "X")
-                || (CheckedWinnerXorO(pictureBox1, pictureBox4, pictureBox7) == "X")
-                || (CheckedWinnerXorO(pictureBox2, pictureBox5, pictureBox8) == "X")
-                || (CheckedWinnerXorO(pictureBox3, pictureBox6, pictureBox9) == "X")
-                || (CheckedWinnerXorO(pictureBox1, pictureBox5, pictureBox9) == "X")
-                || (CheckedWinnerXorO(pictureBox3, pictureBox5, pictureBox7) == "X"))
+            public enWinner Winner;
+            public bool GameOver;
+            public short PlayCount;
+        }
+
+        stGameStatus GameStatus;
+        enPlayer PlayerTurn = enPlayer.player1;
+
+        void EndGame()
+        {
+
+            labTurnPlayer.Text = "Game Over";
+            switch (GameStatus.Winner)
             {
-                return "Player 1";
+
+                case enWinner.player1:
+
+                    labWhoWinner.Text = "Player1";
+                    break;
+
+                case enWinner.player2:
+
+                    labWhoWinner.Text = "Player2";
+                    break;
+
+                default:
+
+                    labWhoWinner.Text = "Draw";
+                    break;
+
             }
 
-            if ((CheckedWinnerXorO(pictureBox1, pictureBox2, pictureBox3) == "O")
-                || (CheckedWinnerXorO(pictureBox4, pictureBox5, pictureBox6) == "O")
-                || (CheckedWinnerXorO(pictureBox7, pictureBox8, pictureBox9) == "O")
-                || (CheckedWinnerXorO(pictureBox1, pictureBox4, pictureBox7) == "O")
-                || (CheckedWinnerXorO(pictureBox2, pictureBox5, pictureBox8) == "O")
-                || (CheckedWinnerXorO(pictureBox3, pictureBox6, pictureBox9) == "O")
-                || (CheckedWinnerXorO(pictureBox1, pictureBox5, pictureBox9) == "O")
-                || (CheckedWinnerXorO(pictureBox3, pictureBox5, pictureBox7) == "O"))
+            MessageBox.Show("GameOver", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DisablePlay();
+        }
+
+        bool CheckedWinnerXorO(PictureBox Pb1, PictureBox Pb2, PictureBox Pb3)
+        {
+            if (Pb1.Tag.ToString() != "?" && Pb1.Tag.ToString() == Pb2.Tag.ToString() && Pb1.Tag.ToString() == Pb3.Tag.ToString())
             {
-                return "Player 2";
+                Pb1.BackColor = Color.DimGray;
+                Pb2.BackColor = Color.DimGray;
+                Pb3.BackColor = Color.DimGray;
+                
+                if(Pb1.Tag.ToString() == "X")
+                {
+                    GameStatus.Winner = enWinner.player1;
+                    GameStatus.GameOver = true;
+                    EndGame();
+                    return true;
+                }
+                else
+                {
+                    GameStatus.Winner = enWinner.player2;
+                    GameStatus.GameOver = true;
+                    EndGame();
+                    return true;
+                }
             }
 
-            return "";
+            GameStatus.GameOver = false;
+            return false;
+        }
+
+        void WhoIsWinner()
+        {
+            if ((CheckedWinnerXorO(pictureBox1, pictureBox2, pictureBox3) )
+                || (CheckedWinnerXorO(pictureBox4, pictureBox5, pictureBox6))
+                || (CheckedWinnerXorO(pictureBox7, pictureBox8, pictureBox9))
+                || (CheckedWinnerXorO(pictureBox1, pictureBox4, pictureBox7))
+                || (CheckedWinnerXorO(pictureBox2, pictureBox5, pictureBox8))
+                || (CheckedWinnerXorO(pictureBox3, pictureBox6, pictureBox9))
+                || (CheckedWinnerXorO(pictureBox1, pictureBox5, pictureBox9))
+                || (CheckedWinnerXorO(pictureBox3, pictureBox5, pictureBox7)))
+            {
+                return;
+            }
         }
 
         void DisablePlay()
@@ -76,142 +118,65 @@ namespace TicTacToeGameProject
 
         bool IsDraw()
         {
-            if(pictureBox1.Tag.ToString() == "")
-                return false;
-            if (pictureBox2.Tag.ToString() == "")
-                return false;
-            if (pictureBox3.Tag.ToString() == "")
-                return false;
-            if (pictureBox4.Tag.ToString() == "")
-                return false;
-            if (pictureBox5.Tag.ToString() == "")
-                return false;
-            if (pictureBox6.Tag.ToString() == "")
-                return false;
-            if (pictureBox7.Tag.ToString() == "")
-                return false;
-            if (pictureBox8.Tag.ToString() == "")
-                return false;
-            if (pictureBox9.Tag.ToString() == "")
-                return false;
+            if (GameStatus.PlayCount == 9 && GameStatus.Winner == enWinner.GameInProgress)
+            {
+                GameStatus.GameOver = true;
+                GameStatus.Winner = enWinner.Draw;
+                EndGame();
+            }
 
-            return true;
+            return false;
         }
 
-        void WhichPlayerChoseWhichPicture(PictureBox Pb,Label TurnPlayer)
+        void WhichPlayerChoseWhichPicture(PictureBox Pb)
         {
-            if (TurnPlayer.Text == "Player 1")
+            if (Pb.Tag.ToString() == "?")
             {
-                if (IsPictureBoxChosed(Pb))
+                switch(PlayerTurn)
                 {
-                    MessageBox.Show("Wrong Choice", "Wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    case enPlayer.player1:
+                        Pb.Image = Resources.X;
+                        PlayerTurn = enPlayer.player2;
+                        labTurnPlayer.Text = "Player 2";
+                        GameStatus.PlayCount++;
+                        Pb.Tag = "X";
+                        WhoIsWinner();
+                        break;
+                    case enPlayer.player2:
+                        Pb.Image = Resources.O;
+                        PlayerTurn = enPlayer.player1;
+                        labTurnPlayer.Text = "Player 1";
+                        GameStatus.PlayCount++;
+                        Pb.Tag = "O";
+                        WhoIsWinner();
+                        break;
                 }
-
-                Pb.Image = Resources.X;
-                Pb.Tag = "X";
-
-                // After each click, we check all possible winning options.
-                if (WhoIsWinner() == "Player 1")
-                {
-                    labWhoWinner.Text = "Player 1";
-                    labTurnPlayer.Text = "Game Over";
-
-                    if(MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
-                    {
-                        DisablePlay();
-                        return;
-                    }
-                }
-
-                if (IsDraw())
-                {
-                    labWhoWinner.Text = "Draw";
-                    labTurnPlayer.Text = "Game Over";
-
-                    if (MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
-                    {
-                        DisablePlay();
-                        return;
-                    }
-                }
-
-                labTurnPlayer.Text = "Player 2";
             }
             else
             {
-                if (IsPictureBoxChosed(Pb))
+                MessageBox.Show("Wrong Choice", "Worng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (IsDraw())
+            {
+                labWhoWinner.Text = "Draw";
+                labTurnPlayer.Text = "Game Over";
+
+                if (MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
                 {
-                    MessageBox.Show("Wrong Choice","Wrong",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DisablePlay();
                     return;
                 }
-
-                Pb.Image = Resources.O;
-                Pb.Tag = "O";
-
-                // After each click, we check all possible winning options.
-                if (WhoIsWinner() == "Player 2")
-                {
-                    labWhoWinner.Text = "Player 2";
-                    labTurnPlayer.Text = "Game Over";
-
-                    if (MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
-                    {
-                        DisablePlay();
-                        return;
-                    }
-                }
-
-                if (IsDraw())
-                {
-                    labWhoWinner.Text = "Draw";
-                    labTurnPlayer.Text = "Game Over";
-
-                    if (MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
-                    {
-                        DisablePlay();
-                        return;
-                    }
-                }
-
-                labTurnPlayer.Text = "Player 1";
             }
         }
 
-        void RestartGame()
+        void RestartPictureBox(PictureBox Pb)
         {
-            pictureBox1.Image = Resources.question_mark_96;
-            pictureBox2.Image = Resources.question_mark_96;
-            pictureBox3.Image = Resources.question_mark_96;
-            pictureBox4.Image = Resources.question_mark_96;
-            pictureBox5.Image = Resources.question_mark_96;
-            pictureBox6.Image = Resources.question_mark_96;
-            pictureBox7.Image = Resources.question_mark_96;
-            pictureBox8.Image = Resources.question_mark_96;
-            pictureBox9.Image = Resources.question_mark_96;
+            Pb.Image = Resources.question_mark_96;
+            Pb.Enabled = true;
+            Pb.Tag = "?";
+            Pb.BackColor = Color.Transparent;
 
-            pictureBox1.Enabled = true;
-            pictureBox2.Enabled = true;
-            pictureBox3.Enabled = true;
-            pictureBox4.Enabled = true;
-            pictureBox5.Enabled = true;
-            pictureBox6.Enabled = true;
-            pictureBox7.Enabled = true;
-            pictureBox8.Enabled = true;
-            pictureBox9.Enabled = true;
-
-            pictureBox1.Tag = "";
-            pictureBox2.Tag = "";
-            pictureBox3.Tag = "";
-            pictureBox4.Tag = "";
-            pictureBox5.Tag = "";
-            pictureBox6.Tag = "";
-            pictureBox7.Tag = "";
-            pictureBox8.Tag = "";
-            pictureBox9.Tag = "";
-
-            labTurnPlayer.Text = "Player 1";
-            labWhoWinner.Text = "In Progress";
         }
 
         private void frmTicTacToe_Paint(object sender, PaintEventArgs e)
@@ -257,7 +222,27 @@ namespace TicTacToeGameProject
         // All X and O controllers trigger a single event.
         private void pictureBoxs_Click(object sender, EventArgs e)
         {
-            WhichPlayerChoseWhichPicture((PictureBox)sender, labTurnPlayer);
+            WhichPlayerChoseWhichPicture((PictureBox)sender);
+        }
+
+        void RestartGame()
+        {
+            RestartPictureBox(pictureBox1);
+            RestartPictureBox(pictureBox2);
+            RestartPictureBox(pictureBox3);
+            RestartPictureBox(pictureBox4);
+            RestartPictureBox(pictureBox5);
+            RestartPictureBox(pictureBox6);
+            RestartPictureBox(pictureBox7);
+            RestartPictureBox(pictureBox8);
+            RestartPictureBox(pictureBox9);
+
+            PlayerTurn = enPlayer.player1;
+            labTurnPlayer.Text = "Player 1";
+            GameStatus.PlayCount = 0;
+            GameStatus.GameOver = false;
+            GameStatus.Winner = enWinner.GameInProgress;
+            labWhoWinner.Text = "In Progress";
         }
 
         private void btnResatrtGame_Click(object sender, EventArgs e)
